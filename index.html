@@ -3,56 +3,75 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>쏭해 — Do your song</title>
-<meta name="description" content="초등교사 최선생이 만든 수업 웹앱, 교육 랩, 그리고 만든 과정에 대한 글. 각자의 노래를 하는 법.">
-<meta property="og:title" content="쏭해 — Do your song">
-<meta property="og:description" content="교실에서 쓰려고 만든 웹앱과 랩, 그리고 만든 이야기.">
+<title>삶은잼 — Life is fun</title>
+<meta name="description" content="교실에서 쓰려고 만든 웹앱과 랩, 그리고 만드는 동안 알게 된 것들. 삶은 잼이다, Boiled Jam.">
+<meta property="og:title" content="삶은잼 — Life is fun">
+<meta property="og:description" content="교실에서 쓰려고 만든 웹앱과 랩, 그리고 만드는 동안 알게 된 것들.">
+<meta name="theme-color" content="#D81B45">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root{
+    /* ────────────────────────────────────────────────
+       색을 바꾸려면 아래 두 줄만 고치면 됩니다.
+       --jam    : 상단 띠 색
+       --on-jam : 그 위에 올라가는 글자색
+
+       ① 쨍한 잼 (지금 설정)
+          --jam:#D81B45;  --on-jam:#ffffff;
+       ② 파스텔
+          --jam:#FCDCE3;  --on-jam:#8A1836;
+       ③ 흑백
+          --jam:#0a0a0a;  --on-jam:#ffffff;
+       ──────────────────────────────────────────────── */
+    --jam:#D81B45;
+    --on-jam:#ffffff;
+
     --bg:#ffffff;
-    --ink:#000000;
+    --ink:#111111;
     --mute:#6e6e6e;
+    --faint:#9a9a9a;
     --line:#e3e3e0;
     --tile:#f4f4f2;
-    --hot:#ff2d62;
     --sans:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
     --w:1180px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+  a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offset:3px}
   .wrap{max-width:var(--w);margin:0 auto;padding:0 20px}
 
-  /* ── 상단 ── */
-  header{border-bottom:1px solid var(--line)}
-  header .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
-  .mark{display:flex;align-items:baseline;gap:10px}
-  .mark b{font-size:22px;font-weight:800;letter-spacing:-.04em}
-  .mark span{font-size:12px;color:var(--mute);letter-spacing:.06em}
-  nav{display:flex;gap:2px}
-  nav a{padding:8px 11px;font-size:15px;color:var(--mute);border-radius:8px}
-  nav a:hover{background:var(--tile);color:var(--ink)}
+  /* ── 잼 띠: 로고 + 메뉴 + 이름 ── */
+  .jam{background:var(--jam);color:var(--on-jam)}
+  .jam a{color:inherit}
 
-  /* ── 한 줄 + 필터 ── */
-  .lead{padding:30px 0 0}
-  .lead p{font-size:17px;color:var(--mute);max-width:52ch}
-  .lead p b{color:var(--ink);font-weight:600}
-  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:20px 0 16px}
+  .topline{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+  .logo{font-size:18px;font-weight:800;letter-spacing:-.005em}
+  .menu{display:flex;gap:2px}
+  .menu a{padding:8px 11px;font-size:15px;border-radius:8px;opacity:.78}
+  .menu a:hover{opacity:1;background:rgba(255,255,255,.14)}
+
+  .hero{padding:46px 0 76px}
+  .hero h1{font-size:clamp(52px,8.5vw,96px);font-weight:800;letter-spacing:-.045em;line-height:1}
+  .hero .en{margin-top:14px;font-size:clamp(20px,2.6vw,28px);font-weight:600;letter-spacing:-.01em}
+  .hero .pun{margin-top:26px;font-size:15px;opacity:.72;max-width:44ch;line-height:1.75}
+
+  /* ── 작업물 ── */
+  main{padding-top:60px}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px}
   .filters{display:flex;gap:6px;flex-wrap:wrap}
   .filters button{
     font:inherit;font-size:14px;padding:7px 13px;border-radius:999px;cursor:pointer;
     border:1px solid var(--line);background:#fff;color:var(--mute)
   }
-  .filters button:hover{color:var(--ink)}
-  .filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
-  .sortnote{font-size:13px;color:var(--mute)}
+  .filters button:hover{color:var(--ink);border-color:#c5c5c1}
+  .filters button[aria-pressed="true"]{background:var(--jam);border-color:var(--jam);color:var(--on-jam)}
 
-  /* ── 균일 타일 그리드 ── */
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding-bottom:8px}
+  .sortnote{font-size:13px;color:var(--faint)}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   .tile{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
-  .tile:hover{border-color:#b9b9b4}
+  .tile:hover{border-color:var(--jam)}
   .tile.hidden{display:none}
   .tile.wide{grid-column:span 2}
 
@@ -61,115 +80,119 @@
   .thumb .ph{
     position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
     padding:16px;text-align:center;color:#fff;
-    font-size:22px;font-weight:700;letter-spacing:-.03em;line-height:1.25;
-    word-break:keep-all
+    font-size:22px;font-weight:700;letter-spacing:-.03em;line-height:1.25;word-break:keep-all
   }
   .badge{position:absolute;left:10px;top:10px;font-size:11px;padding:4px 8px;border-radius:999px;background:#fff;color:var(--ink);font-weight:600}
-  .badge.hot{background:var(--hot);color:#fff}
+  .badge.hot{background:var(--jam);color:var(--on-jam)}
 
-  .body{padding:13px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
-  .kindtag{font-size:12px;color:var(--mute)}
-  .body h3{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
-  .body p{font-size:13.5px;color:var(--mute);line-height:1.45;flex:1}
+  .card{padding:13px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .card .kind{font-size:12px;color:var(--faint)}
+  .card h3{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.3}
+  .card p{font-size:13.5px;color:var(--mute);line-height:1.45;flex:1}
   .acts{display:flex;gap:6px;margin-top:9px}
   .acts a{font-size:13px;padding:6px 11px;border-radius:8px;border:1px solid var(--line);white-space:nowrap}
   .acts a.go{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .acts a:hover{border-color:var(--ink)}
+  .acts a:hover{border-color:var(--jam);color:var(--jam)}
+  .acts a.go:hover{background:var(--jam);border-color:var(--jam);color:var(--on-jam)}
 
   /* ── 목록을 못 읽었을 때 ── */
-  .notice{
-    border:1px dashed var(--line);border-radius:14px;padding:28px 22px;
-    color:var(--mute);font-size:15px;line-height:1.7
-  }
+  .notice{border:1px dashed var(--line);border-radius:14px;padding:28px 22px;color:var(--mute);font-size:15px;line-height:1.7}
   .notice b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
   .notice code{background:var(--tile);padding:2px 6px;border-radius:5px;font-size:13.5px}
 
-  /* ── 소개 줄 ── */
-  .me{margin-top:48px;padding:26px 0;border-top:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:40px}
-  .me h2{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
-  .me p{font-size:15.5px;color:#333;max-width:44ch}
-  .me ul{list-style:none;font-size:15px;color:var(--mute)}
-  .me li{padding:5px 0;border-bottom:1px solid var(--line)}
+  /* ── 만드는 사람 ── */
+  .who{margin-top:76px;padding:32px 0;border-top:2px solid var(--jam);display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .who h2{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+  .who p{font-size:15.5px;color:#333;max-width:42ch}
+  .who ul{list-style:none;font-size:15px;color:var(--mute)}
+  .who li{padding:6px 0;border-bottom:1px solid var(--line)}
 
-  footer{padding:26px 0 56px}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--mute)}
-  footer .links{display:flex;gap:18px;flex-wrap:wrap}
-  footer .links a:hover{color:var(--ink)}
+  .foot{padding:30px 0 64px}
+  .foot .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--faint)}
+  .foot .links{display:flex;gap:18px;flex-wrap:wrap}
+  .foot .links a:hover{color:var(--jam)}
 
   @media (max-width:960px){ .grid{grid-template-columns:repeat(3,1fr)} }
   @media (max-width:720px){
+    .hero{padding:32px 0 52px}
+    main{padding-top:40px}
+    .bar{margin-bottom:20px}
     .grid{grid-template-columns:repeat(2,1fr);gap:10px}
     .tile.wide{grid-column:span 2}
     .thumb .ph{font-size:18px}
-    .me{grid-template-columns:1fr;gap:24px}
-    nav{overflow-x:auto}
-    nav a{padding:8px}
+    .who{margin-top:56px;grid-template-columns:1fr;gap:24px}
+    .menu{overflow-x:auto}
+    .menu a{padding:8px}
   }
   @media (max-width:420px){
-    .body h3{font-size:15px}
-    .body p{display:none}
+    .card h3{font-size:15px}
+    .card p{display:none}
   }
   @media (prefers-reduced-motion:no-preference){
-    .tile,.acts a,nav a,.filters button{transition:border-color .12s,background .12s,color .12s}
+    .tile,.acts a,.menu a,.filters button{transition:border-color .12s,background .12s,color .12s,opacity .12s}
   }
 </style>
 </head>
 <body>
 
-<header>
+<div class="jam">
   <div class="wrap">
-    <a class="mark" href="/"><b>쏭해</b><span>DO YOUR SONG</span></a>
-    <nav aria-label="메뉴">
-      <a href="/tools/">앱</a>
-      <a href="/music/">음악</a>
-      <a href="/blog/">글</a>
-      <a href="/research/">연구</a>
-      <a href="/about/">소개</a>
-    </nav>
+    <div class="topline">
+      <a class="logo" href="/">Boiled Jam</a>
+      <nav class="menu" aria-label="메뉴">
+        <a href="/tools/">앱</a>
+        <a href="/music/">음악</a>
+        <a href="/blog/">글</a>
+        <a href="/research/">연구</a>
+        <a href="/about/">소개</a>
+      </nav>
+    </div>
+
+    <div class="hero">
+      <h1>삶은잼</h1>
+      <p class="en">Life is fun.</p>
+      <p class="pun">삶은 잼이다. 졸여서 만든 잼이기도 하고.<br>교실에서 쓰려고 만든 웹앱과 랩, 그리고 만드는 동안 알게 된 것들.</p>
+    </div>
   </div>
-</header>
+</div>
 
 <main class="wrap">
-  <div class="lead">
-   <p><b>각자의 노래를 하는 삶.</b> 교실에서 쓰려고 만든 웹앱, 아이들과 부른 랩.</p>
-<p>그리고 만든 과정에 대한 글. 그로 인한 나의 성장.</p>
-    <div class="bar">
-      <div class="filters" role="group" aria-label="종류로 보기">
-        <button data-f="all" aria-pressed="true">전체</button>
-        <button data-f="app" aria-pressed="false">웹앱</button>
-        <button data-f="music" aria-pressed="false">음악</button>
-        <button data-f="video" aria-pressed="false">영상</button>
-        <button data-f="post" aria-pressed="false">글</button>
-        <button data-f="research" aria-pressed="false">연구</button>
-      </div>
-      <div class="sortnote" id="sortnote">최근 순</div>
+  <div class="bar">
+    <div class="filters" role="group" aria-label="종류로 보기">
+      <button data-f="all" aria-pressed="true">전체</button>
+      <button data-f="app" aria-pressed="false">웹앱</button>
+      <button data-f="music" aria-pressed="false">음악</button>
+      <button data-f="video" aria-pressed="false">영상</button>
+      <button data-f="post" aria-pressed="false">글</button>
+      <button data-f="research" aria-pressed="false">연구</button>
     </div>
+    <div class="sortnote" id="sortnote">최근 순</div>
   </div>
 
   <section class="grid" id="grid" aria-label="작업물"></section>
   <div id="notice" hidden></div>
 
-  <section class="me">
+  <section class="who">
     <div>
-      <h2>최선생</h2>
-      <p>초등학교 4학년 담임이자 연구부장. 아이들과 소통하는 방법을 수업으로, 웹앱으로, 랩으로 옮기고 그걸 연구로 정리하는 중입니다. 언젠가는 강단에서 이 이야기를 하려고요.</p>
+      <h2>만드는 사람</h2>
+      <p>초등 교실에서 일합니다. 수업에 필요한 게 없으면 직접 만들고, 말로 설명하기 어려운 개념은 랩으로 씁니다. 이름 대신 만든 것으로 소개합니다.</p>
     </div>
     <ul>
-      <li>교원대 대학원 — 초등교육에서 힙합을 활용한 교수·학습방안 : 음악과 소통 역량 강화를 중심으로</li>
-            <li>유튜브 · 최선생의 압축수업</li>
+      <li>교실에서 쓰는 웹앱을 만듭니다</li>
+      <li>수업 요점을 랩으로 씁니다</li>
+      <li>대학원에서 힙합 페다고지를 공부합니다</li>
       <li>강의·협업 문의는 이메일로</li>
     </ul>
   </section>
 </main>
 
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <div>© 2026 쏭해 jir@nate.com</div>
+    <div>© 2026 삶은잼</div>
     <div class="links">
       <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
       <a href="https://soundcloud.com/" target="_blank" rel="noopener">SoundCloud</a>
-      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:hello@example.com">이메일</a>
+      <a href="mailto:boiledjam@example.com">이메일</a>
       <a href="/privacy/">개인정보처리방침</a>
     </div>
   </div>
@@ -184,7 +207,6 @@
   const notice = document.getElementById("notice");
   const note   = document.getElementById("sortnote");
 
-  /* ── 목록을 못 읽었을 때: 백지 대신 안내 ── */
   function fail(reason){
     grid.hidden = true;
     note.hidden = true;
@@ -192,7 +214,7 @@
     notice.className = "notice";
     notice.innerHTML =
       "<b>작업물 목록을 불러오지 못했습니다.</b>" +
-      "<code>works.js</code> 파일에 문법 오류가 있거나 파일을 찾지 못했습니다. " +
+      "<code>works.js</code> 파일이 <code>index.html</code>과 같은 폴더에 있는지, " +
       "따옴표·쉼표가 빠지지 않았는지 확인해 주세요." +
       (reason ? "<br><br><code>" + String(reason).slice(0,200) + "</code>" : "");
   }
@@ -206,7 +228,6 @@
   const live = !!(S.url && S.key);
   let counts = {};
 
-  /* ── 썸네일: 경로가 틀리면 색 블록으로 되돌림 ── */
   function makeThumb(w){
     const box = document.createElement("a");
     box.className = "thumb";
@@ -228,7 +249,7 @@
       im.src = w.img;
       im.alt = w.title;
       im.loading = "lazy";
-      im.addEventListener("error", ()=>{ im.remove(); block(); });
+      im.addEventListener("error", function(){ im.remove(); block(); });
       box.appendChild(im);
     } else {
       block();
@@ -237,14 +258,14 @@
   }
 
   function render(){
-    const list = window.WORKS.slice().sort((a,b)=>{
+    const list = window.WORKS.slice().sort(function(a,b){
       if (a.pin && !b.pin) return -1;
       if (b.pin && !a.pin) return 1;
       return (counts[b.slug]||0) - (counts[a.slug]||0);
     });
 
     grid.innerHTML = "";
-    list.forEach((w,i)=>{
+    list.forEach(function(w,i){
       const el = document.createElement("article");
       el.className = "tile" + (window.FEATURE_TOP && i===0 ? " wide" : "");
       el.dataset.kind = w.kind;
@@ -262,54 +283,53 @@
       el.appendChild(thumb);
 
       const ext = /^https?:/.test(w.url) ? ' target="_blank" rel="noopener"' : "";
-      const body = document.createElement("div");
-      body.className = "body";
-      body.innerHTML =
-        `<div class="kindtag">${KIND[w.kind]||""}</div>` +
-        `<h3>${w.title}</h3>` +
-        `<p>${w.desc||""}</p>` +
-        `<div class="acts">` +
-          `<a class="go" href="${w.url}"${ext} data-slug="${w.slug}">${OPEN[w.kind]||"열기"}</a>` +
-          (w.story ? `<a href="${w.story}">만든 이야기</a>` : "") +
-        `</div>`;
-      el.appendChild(body);
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML =
+        '<div class="kind">' + (KIND[w.kind]||"") + '</div>' +
+        '<h3>' + w.title + '</h3>' +
+        '<p>' + (w.desc||"") + '</p>' +
+        '<div class="acts">' +
+          '<a class="go" href="' + w.url + '"' + ext + ' data-slug="' + w.slug + '">' + (OPEN[w.kind]||"열기") + '</a>' +
+          (w.story ? '<a href="' + w.story + '">만든 이야기</a>' : "") +
+        '</div>';
+      el.appendChild(card);
       grid.appendChild(el);
     });
     applyFilter(document.querySelector('.filters button[aria-pressed="true"]').dataset.f);
   }
 
   function applyFilter(f){
-    document.querySelectorAll(".tile").forEach(t=>{
+    document.querySelectorAll(".tile").forEach(function(t){
       t.classList.toggle("hidden", !(f==="all" || t.dataset.kind===f));
     });
   }
 
-  document.querySelectorAll(".filters button").forEach(b=>{
-    b.addEventListener("click",()=>{
-      document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed","false"));
+  document.querySelectorAll(".filters button").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll(".filters button").forEach(function(x){ x.setAttribute("aria-pressed","false"); });
       b.setAttribute("aria-pressed","true");
       applyFilter(b.dataset.f);
     });
   });
 
-  /* 클릭 기록: 링크 이동을 막지 않고 뒤에서 조용히 보냅니다 */
-  grid.addEventListener("click", e=>{
+  grid.addEventListener("click", function(e){
     const a = e.target.closest("[data-slug]");
     if (!a || !live) return;
     fetch(S.url + "/rest/v1/rpc/bump_click", {
       method:"POST", keepalive:true,
       body: JSON.stringify({p_slug: a.dataset.slug}),
       headers:{"Content-Type":"application/json", apikey:S.key, Authorization:"Bearer "+S.key}
-    }).catch(()=>{});
+    }).catch(function(){});
   });
 
   try {
     if (live){
       note.textContent = "많이 열어본 순";
       fetch(S.url + "/rest/v1/work_stats?select=slug,clicks", {headers:{apikey:S.key, Authorization:"Bearer "+S.key}})
-        .then(r=>r.json())
-        .then(rows=>{ if (Array.isArray(rows)) rows.forEach(r=>counts[r.slug]=r.clicks); render(); })
-        .catch(()=>{ note.textContent="최근 순"; render(); });
+        .then(function(r){ return r.json(); })
+        .then(function(rows){ if (Array.isArray(rows)) rows.forEach(function(r){ counts[r.slug]=r.clicks; }); render(); })
+        .catch(function(){ note.textContent="최근 순"; render(); });
     } else {
       render();
     }
