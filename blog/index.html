@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>글 — 삶은잼</title>
+<meta name="description" content="교실에서 만든 것들과 만드는 동안 알게 된 것들에 대한 기록.">
+<meta name="theme-color" content="#D81B45">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --jam:#D81B45;
+    --on-jam:#ffffff;
+    --bg:#ffffff;
+    --ink:#111111;
+    --mute:#6e6e6e;
+    --faint:#9a9a9a;
+    --line:#e3e3e0;
+    --tile:#f4f4f2;
+    --sans:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+    --w:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+  .wrap{max-width:var(--w);margin:0 auto;padding-left:20px;padding-right:20px}
+
+  /* ── 잼 띠 ── */
+  .jam{background:var(--jam);color:var(--on-jam)}
+  .jam a{color:inherit}
+  .topline{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+  .logo{font-size:18px;font-weight:800;letter-spacing:-.005em}
+  .menu{display:flex;gap:2px}
+  .menu a{padding:8px 11px;font-size:15px;border-radius:8px;opacity:.78}
+  .menu a:hover,.menu a[aria-current]{opacity:1;background:rgba(255,255,255,.14)}
+
+  main{padding-top:48px;padding-bottom:80px}
+
+  /* ── 글 목록 ── */
+  .pagetitle{font-size:30px;font-weight:800;letter-spacing:-.03em;margin-bottom:28px}
+  .list{list-style:none;border-top:1px solid var(--line)}
+  .list li{border-bottom:1px solid var(--line)}
+  .list a{display:block;padding:22px 0}
+  .list .meta{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--faint);margin-bottom:6px}
+  .list .tag{color:var(--jam);font-weight:600}
+  .list h2{font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.4}
+  .list p{font-size:14.5px;color:var(--mute);margin-top:5px}
+  .list a:hover h2{color:var(--jam)}
+  .empty{color:var(--mute);padding:40px 0}
+
+  /* ── 글 본문 ── */
+  .post{max-width:66ch}
+  .post .meta{display:flex;gap:10px;align-items:center;font-size:13.5px;color:var(--faint);margin-bottom:12px}
+  .post .meta .tag{color:var(--jam);font-weight:600}
+  .post h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.035em;line-height:1.25;margin-bottom:34px}
+
+  .body{font-size:17px;line-height:1.85;color:#1d1d1d}
+  .body > * + *{margin-top:20px}
+  .body h2{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.4;margin-top:48px}
+  .body h3{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-top:34px}
+  .body ul,.body ol{padding-left:22px}
+  .body li{margin-top:7px}
+  .body a{color:var(--jam);text-decoration:underline;text-underline-offset:3px}
+  .body strong{font-weight:700}
+  .body img{max-width:100%;height:auto;border-radius:10px;display:block}
+  .body hr{border:0;border-top:1px solid var(--line);margin-top:40px}
+  .body blockquote{
+    border-left:3px solid var(--jam);padding:2px 0 2px 18px;
+    color:var(--mute)
+  }
+  .body code{background:var(--tile);padding:2px 6px;border-radius:5px;font-size:.88em}
+  .body pre{background:#16161a;color:#e8e8e8;padding:18px;border-radius:10px;overflow-x:auto;font-size:14px;line-height:1.65}
+  .body pre code{background:none;padding:0;color:inherit;font-size:inherit}
+  .body table{border-collapse:collapse;width:100%;font-size:15px}
+  .body th,.body td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+  .body th{background:var(--tile);font-weight:600}
+  .body em{font-style:normal;color:var(--mute);font-size:.94em}
+
+  .back{margin-top:56px;padding-top:24px;border-top:1px solid var(--line)}
+  .back a{font-size:15px;color:var(--mute)}
+  .back a:hover{color:var(--jam)}
+
+  .notice{border:1px dashed var(--line);border-radius:14px;padding:28px 22px;color:var(--mute);font-size:15px;line-height:1.7}
+  .notice b{display:block;color:var(--ink);font-size:16px;margin-bottom:6px}
+  .notice code{background:var(--tile);padding:2px 6px;border-radius:5px;font-size:13.5px}
+
+  .foot{padding-top:26px;padding-bottom:60px;border-top:1px solid var(--line)}
+  .foot .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:14px;color:var(--faint)}
+  .foot .links{display:flex;gap:18px;flex-wrap:wrap}
+  .foot .links a:hover{color:var(--jam)}
+
+  @media (max-width:720px){
+    main{padding-top:32px}
+    .pagetitle{font-size:25px}
+    .body{font-size:16.5px}
+    .menu{overflow-x:auto}
+    .menu a{padding:8px}
+  }
+</style>
+</head>
+<body>
+
+<div class="jam">
+  <div class="wrap">
+    <div class="topline">
+      <a class="logo" href="/">Boiled Jam</a>
+      <nav class="menu" aria-label="메뉴">
+        <a href="/tools/">앱</a>
+        <a href="/music/">음악</a>
+        <a href="/blog/" aria-current="page">글</a>
+        <a href="/research/">연구</a>
+        <a href="/about/">소개</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div id="view"></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>© 2026 삶은잼</div>
+    <div class="links">
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://soundcloud.com/" target="_blank" rel="noopener">SoundCloud</a>
+      <a href="mailto:boiledjam@example.com">이메일</a>
+      <a href="/privacy/">개인정보처리방침</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/posts/posts.js" onerror="window.__postsFailed=true"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+(function(){
+  const view = document.getElementById("view");
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function notice(title, msg){
+    view.innerHTML = '<div class="notice"><b>' + title + '</b>' + msg + '</div>';
+  }
+
+  if (window.__postsFailed || !Array.isArray(window.POSTS)) {
+    return notice("글 목록을 불러오지 못했습니다.",
+      "<code>posts/posts.js</code> 파일을 찾지 못했거나 문법 오류가 있습니다. 따옴표·쉼표를 확인해 주세요.");
+  }
+
+  /* 주소에서 ?p=슬러그 읽기 */
+  const params = new URLSearchParams(location.search);
+  const slug = (params.get("p") || "").trim();
+
+  /* ── 글 목록 ── */
+  function renderList(){
+    document.title = "글 — 삶은잼";
+    const posts = window.POSTS.slice().sort(function(a,b){
+      return String(b.date).localeCompare(String(a.date));
+    });
+
+    let html = '<h1 class="pagetitle">글</h1>';
+    if (posts.length === 0) {
+      html += '<p class="empty">아직 쓴 글이 없습니다.</p>';
+    } else {
+      html += '<ul class="list">';
+      posts.forEach(function(p){
+        html += '<li><a href="/blog/?p=' + encodeURIComponent(p.slug) + '">' +
+          '<div class="meta">' +
+            (p.tag ? '<span class="tag">' + esc(p.tag) + '</span>' : '') +
+            '<span>' + esc(p.date || "") + '</span>' +
+          '</div>' +
+          '<h2>' + esc(p.title) + '</h2>' +
+          (p.summary ? '<p>' + esc(p.summary) + '</p>' : '') +
+        '</a></li>';
+      });
+      html += '</ul>';
+    }
+    view.innerHTML = html;
+  }
+
+  /* ── 글 하나 ── */
+  function renderPost(s){
+    if (!/^[a-z0-9-]+$/.test(s)) return renderList();
+
+    const meta = window.POSTS.find(function(p){ return p.slug === s; });
+    if (!meta) {
+      return notice("그런 글이 없습니다.",
+        '<code>posts/posts.js</code>에 <code>' + esc(s) + '</code> 항목이 있는지 확인해 주세요. ' +
+        '<a href="/blog/">글 목록으로</a>');
+    }
+
+    document.title = meta.title + " — 삶은잼";
+
+    fetch("/posts/" + s + ".md")
+      .then(function(r){
+        if (!r.ok) throw new Error("파일을 찾을 수 없습니다 (" + r.status + ")");
+        return r.text();
+      })
+      .then(function(md){
+        const parse = (window.marked && (window.marked.parse || window.marked));
+        const bodyHtml = parse ? parse(md) : "<p>" + esc(md) + "</p>";
+        view.innerHTML =
+          '<article class="post">' +
+            '<div class="meta">' +
+              (meta.tag ? '<span class="tag">' + esc(meta.tag) + '</span>' : '') +
+              '<span>' + esc(meta.date || "") + '</span>' +
+            '</div>' +
+            '<h1>' + esc(meta.title) + '</h1>' +
+            '<div class="body">' + bodyHtml + '</div>' +
+            '<div class="back"><a href="/blog/">← 글 목록</a></div>' +
+          '</article>';
+      })
+      .catch(function(err){
+        notice("글을 불러오지 못했습니다.",
+          '<code>posts/' + esc(s) + '.md</code> 파일이 있는지 확인해 주세요.<br><br>' +
+          '<code>' + esc(err.message) + '</code><br><br><a href="/blog/">글 목록으로</a>');
+      });
+  }
+
+  if (slug) renderPost(slug); else renderList();
+})();
+</script>
+</body>
+</html>
